@@ -1,242 +1,265 @@
-[
-  {
-    "word": "Predict",
-    "definition": "To make a smart guess about what will happen based on clues.",
-    "challenges": [
-      {
-        "difficulty": "easy",
-        "prompt": "Which sentence uses 'predict' correctly?",
-        "choices": [
-          "I predict my shoes when I go outside.",
-          "I predict the sky will be cloudy because it's getting dark.",
-          "I predict the pencil on my desk to write better.",
-          "I predict up the hill every morning."
-        ],
-        "correct": 1,
-        "feedback": "Great thinking! You used 'predict' to make a smart guess based on clues.",
-        "feedback_negative": "Not quite! Remember, predicting means guessing what will happen. Think about the clues."
-      },
-      {
-        "difficulty": "medium",
-        "prompt": "You see a squirrel gather lots of food. What would you predict?",
-        "choices": [
-          "The squirrel will throw it away.",
-          "The squirrel is getting ready for winter.",
-          "The squirrel wants to make a sandwich.",
-          "The squirrel likes shiny objects."
-        ],
-        "correct": 1,
-        "feedback": "Smart thinking! You used 'predict' by using what you saw.",
-        "feedback_negative": "Think about why animals gather food. What season might be coming?"
-      },
-      {
-        "difficulty": "hard",
-        "prompt": "Use 'predict' to complete the sentence: Based on how fast the ice is melting, I ______ it will be gone by lunchtime.",
-        "choices": [
-          "support",
-          "compare",
-          "explain",
-          "predict"
-        ],
-        "correct": 3,
-        "feedback": "Perfect! That's how you use a prediction word in action. 'Predict' is fully charged!",
-        "feedback_negative": "Which word means to make a smart guess about what will happen next?"
-      }
-    ],
-    "power_level": 0,
-    "correct_uses": 0,
-    "color": "#FF0000"
+{
+  "title": "The Tale of the Lost Forest Light",
+  "description": "A vocabulary game where you grow word power to restore a magical forest.",
+  "assets": {
+    "images": {
+      "forest_background_start": "/assets/images/forest_dark.png",
+      "forest_background_progress": "/assets/images/forest_dim.png",
+      "forest_background_end": "/assets/images/forest_bright.png",
+      "companion_fox": "/assets/images/fox_companion.png",
+      "rune_base": "/assets/images/rune_base.png"
+    },
+    "audio": {
+      "background_music": "/assets/audio/forest_ambience.mp3",
+      "correct_answer": "/assets/audio/correct.wav",
+      "incorrect_answer": "/assets/audio/incorrect.wav",
+      "rune_power_up": "/assets/audio/power_up.wav"
+    }
   },
-  {
-    "word": "Observe",
-    "definition": "To watch carefully and notice details.",
-    "challenges": [
-      {
-        "difficulty": "easy",
-        "prompt": "Which sentence uses 'observe' correctly?",
-        "choices": [
-          "I observe the tasty cookie.",
-          "I observe the cat chasing a butterfly.",
-          "I observe the book on the shelf.",
-          "I observe my bike to the park."
-        ],
-        "correct": 1,
-        "feedback": "Excellent! You used 'observe' to show you are watching something happen.",
-        "feedback_negative": "Try again! Observing means carefully watching or noticing something."
-      },
-      {
-        "difficulty": "medium",
-        "prompt": "If you observe dark clouds gathering in the sky, what might happen next?",
-        "choices": [
-          "It will become sunny.",
-          "Birds will start singing.",
-          "It might rain soon.",
-          "The stars will come out."
-        ],
-        "correct": 2,
-        "feedback": "Good observation! Noticing dark clouds often means rain is coming.",
-        "feedback_negative": "Think about what dark clouds usually bring. What kind of weather?"
-      },
-      {
-        "difficulty": "hard",
-        "prompt": "Complete the sentence: To learn about the ants, the scientist will ______ their behavior closely.",
-        "choices": [
-          "predict",
-          "explain",
-          "observe",
-          "compare"
-        ],
-        "correct": 2,
-        "feedback": "Wonderful! 'Observe' is the right word for watching carefully. 'Observe' is fully charged!",
-        "feedback_negative": "Which word means to watch something carefully to learn about it?"
-      }
-    ],
-    "power_level": 0,
-    "correct_uses": 0,
-    "color": "#FF7F00"
+  "state": {
+    "currentScreen": "StartScreen",
+    "wordProgress": {}
   },
-  {
-    "word": "Compare",
-    "definition": "To look at two or more things to see how they are similar or different.",
-    "challenges": [
-      {
-        "difficulty": "easy",
-        "prompt": "What does it mean to 'compare' two things?",
-        "choices": [
-          "To draw a picture of them.",
-          "To see how they are alike or different.",
-          "To hide one of them.",
-          "To give them names."
-        ],
-        "correct": 1,
-        "feedback": "That's right! Comparing helps us see similarities and differences.",
-        "feedback_negative": "Think again! Comparing is about looking at how things are the same or not the same."
-      },
-      {
-        "difficulty": "medium",
-        "prompt": "If you compare a cat and a dog, what is one way they are DIFFERENT?",
-        "choices": [
-          "They both have fur.",
-          "They both are pets.",
-          "Cats usually meow, and dogs usually bark.",
-          "They both need food and water."
-        ],
-        "correct": 2,
-        "feedback": "Great comparison! You found a key difference between cats and dogs.",
-        "feedback_negative": "Look closely at the choices. Which one describes something that is not the same for both?"
-      },
-      {
-        "difficulty": "hard",
-        "prompt": "Complete the sentence: Let's ______ the tall tree and the short bush.",
-        "choices": [
-          "explain",
-          "support",
-          "predict",
-          "compare"
-        ],
-        "correct": 3,
-        "feedback": "Fantastic! You used 'compare' perfectly here. 'Compare' is fully charged!",
-        "feedback_negative": "Which word means to look at how things are similar or different?"
-      }
-    ],
-    "power_level": 0,
-    "correct_uses": 0,
-    "color": "#FFFF00"
-  },
-  {
-    "word": "Explain",
-    "definition": "To make something clear or easy to understand by giving details or reasons.",
-    "challenges": [
-      {
-        "difficulty": "easy",
-        "prompt": "Which sentence shows someone trying to 'explain'?",
-        "choices": [
-          "The sun is bright today.",
-          "My bike is blue.",
-          "Let me explain how this toy works.",
-          "I like playing outside."
-        ],
-        "correct": 2,
-        "feedback": "Exactly! Explaining means making something clear for others.",
-        "feedback_negative": "Remember, explaining is about making something easier to understand."
-      },
-      {
-        "difficulty": "medium",
-        "prompt": "Why did the ice cream melt? Explain using a simple reason.",
-        "choices": [
-          "Because it was cold.",
-          "Because the sun was hot.",
-          "Because it tasted good.",
-          "Because it was in the freezer."
-        ],
-        "correct": 1,
-        "feedback": "Good explanation! Heat often causes things like ice cream to melt.",
-        "feedback_negative": "Think about what makes things melt. Is it usually heat or cold?"
-      },
-      {
-        "difficulty": "hard",
-        "prompt": "Complete the sentence: The teacher asked me to ______ my answer so everyone could understand.",
-        "choices": [
-          "compare",
-          "explain",
-          "observe",
-          "support"
-        ],
-        "correct": 1,
-        "feedback": "Perfect! 'Explain' fits perfectly. 'Explain' is fully charged!",
-        "feedback_negative": "Which word means to make something clear or give reasons?"
-      }
-    ],
-    "power_level": 0,
-    "correct_uses": 0,
-    "color": "#00FF00"
-  },
-  {
-    "word": "Support",
-    "definition": "To give evidence or reasons for an idea, or to hold something up.",
-    "challenges": [
-      {
-        "difficulty": "easy",
-        "prompt": "Which of these can give physical 'support'?",
-        "choices": [
-          "A cloud in the sky.",
-          "A strong table leg.",
-          "A whisper.",
-          "A shadow."
-        ],
-        "correct": 1,
-        "feedback": "That's right! A table leg holds up the table - it gives support.",
-        "feedback_negative": "Try again! Which choice describes something that can hold another object up?"
-      },
-      {
-        "difficulty": "medium",
-        "prompt": "Which sentence gives 'support' to the idea that 'reading is good'?",
-        "choices": [
-          "Books have many pages.",
-          "Reading helps you learn new words.",
-          "Some books have pictures.",
-          "You can read in a chair."
-        ],
-        "correct": 1,
-        "feedback": "Great! That sentence gives a reason, supporting the idea that reading is good.",
-        "feedback_negative": "Think about which sentence gives a good reason *why* reading is good."
-      },
-      {
-        "difficulty": "hard",
-        "prompt": "Complete the sentence: You need good reasons to ______ your opinion in a debate.",
-        "choices": [
-          "predict",
-          "observe",
-          "support",
-          "compare"
-        ],
-        "correct": 2,
-        "feedback": "Excellent choice! You use reasons to 'support' your ideas. 'Support' is fully charged!",
-        "feedback_negative": "Which word means to give reasons or evidence for your idea?"
-      }
-    ],
-    "power_level": 0,
-    "correct_uses": 0,
-    "color": "#0000FF"
-  }
-]
+  "words": [
+    {
+      "word": "Predict",
+      "definition": "To make a smart guess about what will happen based on clues.",
+      "challenges": [
+        {
+          "difficulty": "easy",
+          "prompt": "Which sentence uses 'predict' correctly?",
+          "choices": [
+            "I predict my shoes when I go outside.",
+            "I predict the sky will be cloudy because it's getting dark.",
+            "I predict the pencil on my desk to write better.",
+            "I predict up the hill every morning."
+          ],
+          "correct": 1,
+          "feedback": "Great thinking! You used 'predict' to make a smart guess based on clues.",
+          "feedback_negative": "Not quite! Remember, predicting means guessing what will happen. Think about the clues."
+        },
+        {
+          "difficulty": "medium",
+          "prompt": "You see a squirrel gather lots of food. What would you predict?",
+          "choices": [
+            "The squirrel will throw it away.",
+            "The squirrel is getting ready for winter.",
+            "The squirrel wants to make a sandwich.",
+            "The squirrel likes shiny objects."
+          ],
+          "correct": 1,
+          "feedback": "Smart thinking! You used 'predict' by using what you saw.",
+          "feedback_negative": "Think about why animals gather food. What season might be coming?"
+        },
+        {
+          "difficulty": "hard",
+          "prompt": "Use 'predict' to complete the sentence: Based on how fast the ice is melting, I ______ it will be gone by lunchtime.",
+          "choices": [
+            "support",
+            "compare",
+            "explain",
+            "predict"
+          ],
+          "correct": 3,
+          "feedback": "Perfect! That's how you use a prediction word in action. 'Predict' is fully charged!",
+          "feedback_negative": "Which word means to make a smart guess about what will happen next?"
+        }
+      ],
+      "power_level": 0,
+      "correct_uses": 0,
+      "color": "#FF0000"
+    },
+    {
+      "word": "Observe",
+      "definition": "To watch carefully and notice details.",
+      "challenges": [
+        {
+          "difficulty": "easy",
+          "prompt": "Which sentence uses 'observe' correctly?",
+          "choices": [
+            "I observe the tasty cookie.",
+            "I observe the cat chasing a butterfly.",
+            "I observe the book on the shelf.",
+            "I observe my bike to the park."
+          ],
+          "correct": 1,
+          "feedback": "Excellent! You used 'observe' to show you are watching something happen.",
+          "feedback_negative": "Try again! Observing means carefully watching or noticing something."
+        },
+        {
+          "difficulty": "medium",
+          "prompt": "If you observe dark clouds gathering in the sky, what might happen next?",
+          "choices": [
+            "It will become sunny.",
+            "Birds will start singing.",
+            "It might rain soon.",
+            "The stars will come out."
+          ],
+          "correct": 2,
+          "feedback": "Good observation! Noticing dark clouds often means rain is coming.",
+          "feedback_negative": "Think about what dark clouds usually bring. What kind of weather?"
+        },
+        {
+          "difficulty": "hard",
+          "prompt": "Complete the sentence: To learn about the ants, the scientist will ______ their behavior closely.",
+          "choices": [
+            "predict",
+            "explain",
+            "observe",
+            "compare"
+          ],
+          "correct": 2,
+          "feedback": "Wonderful! 'Observe' is the right word for watching carefully. 'Observe' is fully charged!",
+          "feedback_negative": "Which word means to watch something carefully to learn about it?"
+        }
+      ],
+      "power_level": 0,
+      "correct_uses": 0,
+      "color": "#FF7F00"
+    },
+    {
+      "word": "Compare",
+      "definition": "To look at two or more things to see how they are similar or different.",
+      "challenges": [
+        {
+          "difficulty": "easy",
+          "prompt": "What does it mean to 'compare' two things?",
+          "choices": [
+            "To draw a picture of them.",
+            "To see how they are alike or different.",
+            "To hide one of them.",
+            "To give them names."
+          ],
+          "correct": 1,
+          "feedback": "That's right! Comparing helps us see similarities and differences.",
+          "feedback_negative": "Think again! Comparing is about looking at how things are the same or not the same."
+        },
+        {
+          "difficulty": "medium",
+          "prompt": "If you compare a cat and a dog, what is one way they are DIFFERENT?",
+          "choices": [
+            "They both have fur.",
+            "They both are pets.",
+            "Cats usually meow, and dogs usually bark.",
+            "They both need food and water."
+          ],
+          "correct": 2,
+          "feedback": "Great comparison! You found a key difference between cats and dogs.",
+          "feedback_negative": "Look closely at the choices. Which one describes something that is not the same for both?"
+        },
+        {
+          "difficulty": "hard",
+          "prompt": "Complete the sentence: Let's ______ the tall tree and the short bush.",
+          "choices": [
+            "explain",
+            "support",
+            "predict",
+            "compare"
+          ],
+          "correct": 3,
+          "feedback": "Fantastic! You used 'compare' perfectly here. 'Compare' is fully charged!",
+          "feedback_negative": "Which word means to look at how things are similar or different?"
+        }
+      ],
+      "power_level": 0,
+      "correct_uses": 0,
+      "color": "#FFFF00"
+    },
+    {
+      "word": "Explain",
+      "definition": "To make something clear or easy to understand by giving details or reasons.",
+      "challenges": [
+        {
+          "difficulty": "easy",
+          "prompt": "Which sentence shows someone trying to 'explain'?",
+          "choices": [
+            "The sun is bright today.",
+            "My bike is blue.",
+            "Let me explain how this toy works.",
+            "I like playing outside."
+          ],
+          "correct": 2,
+          "feedback": "Exactly! Explaining means making something clear for others.",
+          "feedback_negative": "Remember, explaining is about making something easier to understand."
+        },
+        {
+          "difficulty": "medium",
+          "prompt": "Why did the ice cream melt? Explain using a simple reason.",
+          "choices": [
+            "Because it was cold.",
+            "Because the sun was hot.",
+            "Because it tasted good.",
+            "Because it was in the freezer."
+          ],
+          "correct": 1,
+          "feedback": "Good explanation! Heat often causes things like ice cream to melt.",
+          "feedback_negative": "Think about what makes things melt. Is it usually heat or cold?"
+        },
+        {
+          "difficulty": "hard",
+          "prompt": "Complete the sentence: The teacher asked me to ______ my answer so everyone could understand.",
+          "choices": [
+            "compare",
+            "explain",
+            "observe",
+            "support"
+          ],
+          "correct": 1,
+          "feedback": "Perfect! 'Explain' fits perfectly. 'Explain' is fully charged!",
+          "feedback_negative": "Which word means to make something clear or give reasons?"
+        }
+      ],
+      "power_level": 0,
+      "correct_uses": 0,
+      "color": "#00FF00"
+    },
+    {
+      "word": "Support",
+      "definition": "To give evidence or reasons for an idea, or to hold something up.",
+      "challenges": [
+        {
+          "difficulty": "easy",
+          "prompt": "Which of these can give physical 'support'?",
+          "choices": [
+            "A cloud in the sky.",
+            "A strong table leg.",
+            "A whisper.",
+            "A shadow."
+          ],
+          "correct": 1,
+          "feedback": "That's right! A table leg holds up the table - it gives support.",
+          "feedback_negative": "Try again! Which choice describes something that can hold another object up?"
+        },
+        {
+          "difficulty": "medium",
+          "prompt": "Which sentence gives 'support' to the idea that 'reading is good'?",
+          "choices": [
+            "Books have many pages.",
+            "Reading helps you learn new words.",
+            "Some books have pictures.",
+            "You can read in a chair."
+          ],
+          "correct": 1,
+          "feedback": "Great! That sentence gives a reason, supporting the idea that reading is good.",
+          "feedback_negative": "Think about which sentence gives a good reason *why* reading is good."
+        },
+        {
+          "difficulty": "hard",
+          "prompt": "Complete the sentence: You need good reasons to ______ your opinion in a debate.",
+          "choices": [
+            "predict",
+            "observe",
+            "support",
+            "compare"
+          ],
+          "correct": 2,
+          "feedback": "Excellent choice! You use reasons to 'support' your ideas. 'Support' is fully charged!",
+          "feedback_negative": "Which word means to give reasons or evidence for your idea?"
+        }
+      ],
+      "power_level": 0,
+      "correct_uses": 0,
+      "color": "#0000FF"
+    }
+  ]
+}
