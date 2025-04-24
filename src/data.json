@@ -34,7 +34,7 @@
             "I predict the pencil on my desk to write better.",
             "I predict up the hill every morning."
           ],
-          "correct": 1,
+          "points": 1,
           "feedback": "Great thinking! You used 'predict' to make a smart guess based on clues.",
           "feedback_negative": "Not quite! Remember, predicting means guessing what will happen. Think about the clues."
         },
@@ -47,7 +47,7 @@
             "The squirrel wants to make a sandwich.",
             "The squirrel likes shiny objects."
           ],
-          "correct": 1,
+          "points": 1,
           "feedback": "Smart thinking! You used 'predict' by using what you saw.",
           "feedback_negative": "Think about why animals gather food. What season might be coming?"
         },
@@ -60,7 +60,7 @@
             "explain",
             "predict"
           ],
-          "correct": 3,
+          "points": 3,
           "feedback": "Perfect! That's how you use a prediction word in action. 'Predict' is fully charged!",
           "feedback_negative": "Which word means to make a smart guess about what will happen next?"
         }
@@ -82,7 +82,7 @@
             "I observe the book on the shelf.",
             "I observe my bike to the park."
           ],
-          "correct": 1,
+          "points": 1,
           "feedback": "Excellent! You used 'observe' to show you are watching something happen.",
           "feedback_negative": "Try again! Observing means carefully watching or noticing something."
         },
@@ -95,7 +95,7 @@
             "It might rain soon.",
             "The stars will come out."
           ],
-          "correct": 2,
+          "points": 1,
           "feedback": "Good observation! Noticing dark clouds often means rain is coming.",
           "feedback_negative": "Think about what dark clouds usually bring. What kind of weather?"
         },
@@ -108,7 +108,7 @@
             "observe",
             "compare"
           ],
-          "correct": 2,
+          "points": 3,
           "feedback": "Wonderful! 'Observe' is the right word for watching carefully. 'Observe' is fully charged!",
           "feedback_negative": "Which word means to watch something carefully to learn about it?"
         }
@@ -130,7 +130,7 @@
             "To hide one of them.",
             "To give them names."
           ],
-          "correct": 1,
+          "points": 1,
           "feedback": "That's right! Comparing helps us see similarities and differences.",
           "feedback_negative": "Think again! Comparing is about looking at how things are the same or not the same."
         },
@@ -143,7 +143,7 @@
             "Cats usually meow, and dogs usually bark.",
             "They both need food and water."
           ],
-          "correct": 2,
+          "points": 1,
           "feedback": "Great comparison! You found a key difference between cats and dogs.",
           "feedback_negative": "Look closely at the choices. Which one describes something that is not the same for both?"
         },
@@ -156,7 +156,7 @@
             "predict",
             "compare"
           ],
-          "correct": 3,
+          "points": 3,
           "feedback": "Fantastic! You used 'compare' perfectly here. 'Compare' is fully charged!",
           "feedback_negative": "Which word means to look at how things are similar or different?"
         }
@@ -178,7 +178,7 @@
             "Let me explain how this toy works.",
             "I like playing outside."
           ],
-          "correct": 2,
+          "points": 1,
           "feedback": "Exactly! Explaining means making something clear for others.",
           "feedback_negative": "Remember, explaining is about making something easier to understand."
         },
@@ -191,7 +191,7 @@
             "Because it tasted good.",
             "Because it was in the freezer."
           ],
-          "correct": 1,
+          "points": 1,
           "feedback": "Good explanation! Heat often causes things like ice cream to melt.",
           "feedback_negative": "Think about what makes things melt. Is it usually heat or cold?"
         },
@@ -204,7 +204,7 @@
             "observe",
             "support"
           ],
-          "correct": 1,
+          "points": 3,
           "feedback": "Perfect! 'Explain' fits perfectly. 'Explain' is fully charged!",
           "feedback_negative": "Which word means to make something clear or give reasons?"
         }
@@ -226,7 +226,7 @@
             "A whisper.",
             "A shadow."
           ],
-          "correct": 1,
+          "points": 1,
           "feedback": "That's right! A table leg holds up the table - it gives support.",
           "feedback_negative": "Try again! Which choice describes something that can hold another object up?"
         },
@@ -239,7 +239,7 @@
             "Some books have pictures.",
             "You can read in a chair."
           ],
-          "correct": 1,
+          "points": 1,
           "feedback": "Great! That sentence gives a reason, supporting the idea that reading is good.",
           "feedback_negative": "Think about which sentence gives a good reason *why* reading is good."
         },
@@ -252,7 +252,7 @@
             "support",
             "compare"
           ],
-          "correct": 2,
+          "points": 3,
           "feedback": "Excellent choice! You use reasons to 'support' your ideas. 'Support' is fully charged!",
           "feedback_negative": "Which word means to give reasons or evidence for your idea?"
         }
