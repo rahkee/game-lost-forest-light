@@ -5,10 +5,11 @@ import './GameScreen.css';
 // Word rune component
 const WordRune = ({ word, onClick, isSelected }) => {
   const { color, power_level } = word;
+  const isComplete = power_level >= 100;
 
   return (
     <div
-      className={`word-rune ${isSelected ? 'selected' : ''}`}
+      className={`word-rune ${isSelected ? 'selected' : ''} ${isComplete ? 'completed' : ''}`}
       style={{
         backgroundColor: `${color}33`, // Add transparency to the color
         borderColor: color
@@ -23,6 +24,7 @@ const WordRune = ({ word, onClick, isSelected }) => {
         }}
       >
         <span className="rune-initial">{word.word[0]}</span>
+        {isComplete && <span className="completion-mark">✓</span>}
       </div>
       <h3 className="rune-word">{word.word}</h3>
       <div className="power-bar-container">
@@ -45,6 +47,8 @@ const ChallengeScreen = ({ word, onComplete, onBack }) => {
   const [feedback, setFeedback] = useState(null);
   const [isCorrect, setIsCorrect] = useState(false);
   const [earnedPoints, setEarnedPoints] = useState(0);
+  const [showContinue, setShowContinue] = useState(false);
+  const [feedbackVisible, setFeedbackVisible] = useState(false);
 
   const currentChallenge = word.challenges[currentChallengeIndex];
 
@@ -66,16 +70,25 @@ const ChallengeScreen = ({ word, onComplete, onBack }) => {
       setFeedback(currentChallenge.feedback_negative);
       setEarnedPoints(0);
     }
+
+    // Trigger feedback animation
+    setTimeout(() => {
+      setFeedbackVisible(true);
+    }, 100);
+
+    // Show the continue button after a short delay
+    setTimeout(() => {
+      setShowContinue(true);
+    }, 1000);
   };
 
-  const handleNextChallenge = () => {
-    if (currentChallengeIndex < word.challenges.length - 1) {
-      setCurrentChallengeIndex(currentChallengeIndex + 1);
-      setSelectedAnswer(null);
-      setFeedback(null);
-    } else {
-      // All challenges completed
+  const handleCloseChallenge = () => {
+    // Update the word's power level if the answer was correct
+    if (isCorrect) {
       onComplete(word.word, earnedPoints);
+    } else {
+      // Just go back to word selection without updating power level
+      onBack();
     }
   };
 
@@ -102,10 +115,10 @@ const ChallengeScreen = ({ word, onComplete, onBack }) => {
             <button
               key={index}
               className={`challenge-choice ${selectedAnswer === index
-                  ? isCorrect
-                    ? 'correct'
-                    : 'incorrect'
-                  : ''
+                ? isCorrect
+                  ? 'correct'
+                  : 'incorrect'
+                : ''
                 }`}
               onClick={() => selectedAnswer === null && handleAnswerSelect(index)}
               disabled={selectedAnswer !== null}
@@ -117,18 +130,18 @@ const ChallengeScreen = ({ word, onComplete, onBack }) => {
       </div>
 
       {feedback && (
-        <div className={`feedback-container ${isCorrect ? 'correct' : 'incorrect'}`}>
+        <div className={`feedback-container ${isCorrect ? 'correct' : 'incorrect'} ${feedbackVisible ? 'visible' : ''}`}>
           <p className="feedback-text">{feedback}</p>
         </div>
       )}
 
       <div className="challenge-buttons">
-        {selectedAnswer !== null && (
+        {selectedAnswer !== null && showContinue && (
           <button
             className="next-button"
-            onClick={handleNextChallenge}
+            onClick={handleCloseChallenge}
           >
-            {currentChallengeIndex < word.challenges.length - 1 ? 'Next Challenge' : 'Complete'}
+            Continue
           </button>
         )}
 
@@ -169,7 +182,9 @@ const GameScreen = ({ onGameComplete }) => {
     setWords(prevWords => {
       return prevWords.map(word => {
         if (word.word === wordName) {
-          const newPowerLevel = Math.min(100, word.power_level + 33); // Each challenge increases power by ~33%
+          // Calculate how much to increase the power level based on which challenge was completed
+          const pointIncrease = pointsEarned === 3 ? 34 : 33; // Hard challenge gives slightly more
+          const newPowerLevel = Math.min(100, word.power_level + pointIncrease);
           const newCorrectUses = word.correct_uses + (pointsEarned > 0 ? 1 : 0);
           return {
             ...word,
@@ -181,6 +196,7 @@ const GameScreen = ({ onGameComplete }) => {
       });
     });
 
+    // Return to word selection screen after completing a challenge
     setSelectedWord(null);
   };
 
