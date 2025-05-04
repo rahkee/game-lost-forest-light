@@ -534,31 +534,6 @@
   --word-color: #0000FF;
 }
 
-/* Word badge colors */
-.difficulty-badge.color-predict {
-  background-color: #FF0000;
-}
-
-.difficulty-badge.color-observe {
-  background-color: #FF7F00;
-}
-
-.difficulty-badge.color-compare {
-  background-color: #FFFF00;
-  color: #333;
-  /* Dark text for better contrast on yellow */
-}
-
-.difficulty-badge.color-explain {
-  background-color: #00FF00;
-  color: #333;
-  /* Dark text for better contrast on green */
-}
-
-.difficulty-badge.color-support {
-  background-color: #0000FF;
-}
-
 /* Power bar colors */
 .power-bar.color-predict {
   background-color: #FF0000;

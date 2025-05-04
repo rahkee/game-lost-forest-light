@@ -6,7 +6,6 @@ import './GameScreen.css';
 const WordRune = ({ word, onClick, isSelected }) => {
   const { power_level } = word;
   const isComplete = word.completed;
-  const difficultyBadge = word.current_difficulty.charAt(0).toUpperCase() + word.current_difficulty.slice(1);
 
   // Convert color names to CSS classes
   const colorClass = `color-${word.word.toLowerCase()}`;
@@ -22,9 +21,6 @@ const WordRune = ({ word, onClick, isSelected }) => {
         {isComplete && <span className="completion-mark">✓</span>}
       </div>
       <h3 className="power-percentage">{Math.round(power_level)}%</h3>
-      <div className={`difficulty-badge ${colorClass}`}>
-        {!isComplete ? difficultyBadge : 'Mastered'}
-      </div>
       <div className="power-bar-container">
         <div
           className={`power-bar ${colorClass}`}
@@ -117,12 +113,6 @@ const ChallengeScreen = ({ word, onComplete }) => {
 
       <h2 className="challenge-word">{word.word}</h2>
       <p className="challenge-definition">{word.definition}</p>
-
-      <div className="difficulty-indicator">
-        <span className={`difficulty-badge ${colorClass}`}>
-          {currentChallenge.difficulty.charAt(0).toUpperCase() + currentChallenge.difficulty.slice(1)}
-        </span>
-      </div>
 
       <div className="challenge-question-container">
         <h3 className="challenge-prompt">{currentChallenge.prompt}</h3>
