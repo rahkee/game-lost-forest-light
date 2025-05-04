@@ -59,6 +59,12 @@ const ChallengeScreen = ({ word, onComplete }) => {
     challenge.difficulty === word.current_difficulty
   );
 
+  // Helper function to get a random message from an array
+  const getRandomMessage = (messages) => {
+    const randomIndex = Math.floor(Math.random() * messages.length);
+    return messages[randomIndex];
+  };
+
   const handleAnswerSelect = (answerIndex) => {
     setSelectedAnswer(answerIndex);
     // For hard challenges, the correct answer is always the word itself
@@ -75,12 +81,10 @@ const ChallengeScreen = ({ word, onComplete }) => {
       setEarnedPoints(currentChallenge.points);
 
       // Set advancement message
-      if (currentChallenge.difficulty === 'easy') {
-        setAdvancementMessage('Moving to Medium level!');
-      } else if (currentChallenge.difficulty === 'medium') {
-        setAdvancementMessage('Moving to Hard level!');
-      } else if (currentChallenge.difficulty === 'hard') {
-        setAdvancementMessage(`${word.word} is now mastered!`);
+      if (currentChallenge.difficulty === 'hard') {
+        setAdvancementMessage(getRandomMessage(gameData.assets.mastery_messages));
+      } else {
+        setAdvancementMessage(getRandomMessage(gameData.assets.advancement_messages));
       }
     } else {
       setFeedback(currentChallenge.feedback_negative);
@@ -266,10 +270,6 @@ const GameScreen = ({ onGameComplete }) => {
         {!selectedWord ? (
           <>
             <h2 className="word-selection-title">Choose a Word to Grow</h2>
-
-            <div className="progress-summary">
-              <p>{Math.round(overallProgress)}% Complete - {words.filter(word => word.completed).length} of {words.length} Words Mastered</p>
-            </div>
 
             <div className="word-runes-container">
               {words.map((word) => (

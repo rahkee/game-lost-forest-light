@@ -14,7 +14,26 @@
       "correct_answer": "./assets/audio/correct.wav",
       "incorrect_answer": "./assets/audio/incorrect.wav",
       "rune_power_up": "./assets/audio/power_up.wav"
-    }
+    },
+    "advancement_messages": [
+      "Your word power is growing stronger!",
+      "The forest glows brighter with your knowledge!",
+      "You're doing great! This word is getting more powerful!",
+      "The magic flows through your words!",
+      "Excellent! Your vocabulary makes the rune glow!",
+      "Your understanding brings light to the forest!",
+      "The word's energy grows with your wisdom!",
+      "This word rune shines with new power!",
+      "Amazing progress! The forest feels your knowledge!",
+      "Your mastery brings strength to this word!"
+    ],
+    "mastery_messages": [
+      "You've mastered this word completely!",
+      "This word now shines at full power!",
+      "The word's magic is fully restored!",
+      "Full power achieved! This word is mastered!",
+      "Perfect mastery of this word's magic!"
+    ]
   },
   "state": {
     "currentScreen": "StartScreen",
