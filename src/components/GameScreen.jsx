@@ -41,7 +41,7 @@ const WordRune = ({ word, onClick, isSelected }) => {
 };
 
 // Challenge screen component
-const ChallengeScreen = ({ word, onComplete, onBack }) => {
+const ChallengeScreen = ({ word, onComplete }) => {
   const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [feedback, setFeedback] = useState(null);
@@ -88,7 +88,7 @@ const ChallengeScreen = ({ word, onComplete, onBack }) => {
       onComplete(word.word, earnedPoints);
     } else {
       // Just go back to word selection without updating power level
-      onBack();
+      onComplete(word.word, 0);
     }
   };
 
@@ -144,13 +144,6 @@ const ChallengeScreen = ({ word, onComplete, onBack }) => {
             Continue
           </button>
         )}
-
-        <button
-          className="back-button"
-          onClick={onBack}
-        >
-          Back to Words
-        </button>
       </div>
     </div>
   );
@@ -181,7 +174,7 @@ const GameScreen = ({ onGameComplete }) => {
   const handleChallengeComplete = (wordName, pointsEarned) => {
     setWords(prevWords => {
       return prevWords.map(word => {
-        if (word.word === wordName) {
+        if (word.word === wordName && pointsEarned > 0) {
           // Calculate how much to increase the power level based on which challenge was completed
           const pointIncrease = pointsEarned === 3 ? 34 : 33; // Hard challenge gives slightly more
           const newPowerLevel = Math.min(100, word.power_level + pointIncrease);
@@ -239,7 +232,6 @@ const GameScreen = ({ onGameComplete }) => {
           <ChallengeScreen
             word={selectedWord}
             onComplete={handleChallengeComplete}
-            onBack={() => setSelectedWord(null)}
           />
         )}
       </main>
