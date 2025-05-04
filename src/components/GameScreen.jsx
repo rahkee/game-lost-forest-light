@@ -5,7 +5,8 @@ import './GameScreen.css';
 // Word rune component
 const WordRune = ({ word, onClick, isSelected }) => {
   const { color, power_level } = word;
-  const isComplete = power_level >= 100;
+  const isComplete = word.completed;
+  const difficultyBadge = word.current_difficulty.charAt(0).toUpperCase() + word.current_difficulty.slice(1);
 
   return (
     <div
@@ -27,6 +28,9 @@ const WordRune = ({ word, onClick, isSelected }) => {
         {isComplete && <span className="completion-mark">✓</span>}
       </div>
       <h3 className="rune-word">{word.word}</h3>
+      <div className="difficulty-badge" style={{ backgroundColor: color }}>
+        {!isComplete ? difficultyBadge : 'Mastered'}
+      </div>
       <div className="power-bar-container">
         <div
           className="power-bar"
@@ -42,22 +46,25 @@ const WordRune = ({ word, onClick, isSelected }) => {
 
 // Challenge screen component
 const ChallengeScreen = ({ word, onComplete }) => {
-  const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [feedback, setFeedback] = useState(null);
   const [isCorrect, setIsCorrect] = useState(false);
   const [earnedPoints, setEarnedPoints] = useState(0);
   const [showContinue, setShowContinue] = useState(false);
   const [feedbackVisible, setFeedbackVisible] = useState(false);
+  const [advancementMessage, setAdvancementMessage] = useState('');
 
-  const currentChallenge = word.challenges[currentChallengeIndex];
+  // Find the challenge that matches the current difficulty level
+  const currentChallenge = word.challenges.find(challenge =>
+    challenge.difficulty === word.current_difficulty
+  );
 
   const handleAnswerSelect = (answerIndex) => {
     setSelectedAnswer(answerIndex);
     // For hard challenges, the correct answer is always the word itself
     // For easy/medium, the correct answer is the second option (index 1)
     const correctIndex = currentChallenge.difficulty === 'hard'
-      ? word.challenges[currentChallengeIndex].choices.findIndex(choice => choice.toLowerCase() === word.word.toLowerCase())
+      ? currentChallenge.choices.findIndex(choice => choice.toLowerCase() === word.word.toLowerCase())
       : 1;
 
     const correct = answerIndex === correctIndex;
@@ -66,9 +73,19 @@ const ChallengeScreen = ({ word, onComplete }) => {
     if (correct) {
       setFeedback(currentChallenge.feedback);
       setEarnedPoints(currentChallenge.points);
+
+      // Set advancement message
+      if (currentChallenge.difficulty === 'easy') {
+        setAdvancementMessage('Moving to Medium level!');
+      } else if (currentChallenge.difficulty === 'medium') {
+        setAdvancementMessage('Moving to Hard level!');
+      } else if (currentChallenge.difficulty === 'hard') {
+        setAdvancementMessage(`${word.word} is now mastered!`);
+      }
     } else {
       setFeedback(currentChallenge.feedback_negative);
       setEarnedPoints(0);
+      setAdvancementMessage('');
     }
 
     // Trigger feedback animation
@@ -85,10 +102,10 @@ const ChallengeScreen = ({ word, onComplete }) => {
   const handleCloseChallenge = () => {
     // Update the word's power level if the answer was correct
     if (isCorrect) {
-      onComplete(word.word, earnedPoints);
+      onComplete(word.word, earnedPoints, true);
     } else {
       // Just go back to word selection without updating power level
-      onComplete(word.word, 0);
+      onComplete(word.word, 0, false);
     }
   };
 
@@ -106,6 +123,12 @@ const ChallengeScreen = ({ word, onComplete }) => {
 
       <h2 className="challenge-word">{word.word}</h2>
       <p className="challenge-definition">{word.definition}</p>
+
+      <div className="difficulty-indicator">
+        <span className="difficulty-badge" style={{ backgroundColor: word.color }}>
+          {currentChallenge.difficulty.charAt(0).toUpperCase() + currentChallenge.difficulty.slice(1)}
+        </span>
+      </div>
 
       <div className="challenge-question-container">
         <h3 className="challenge-prompt">{currentChallenge.prompt}</h3>
@@ -132,6 +155,9 @@ const ChallengeScreen = ({ word, onComplete }) => {
       {feedback && (
         <div className={`feedback-container ${isCorrect ? 'correct' : 'incorrect'} ${feedbackVisible ? 'visible' : ''}`}>
           <p className="feedback-text">{feedback}</p>
+          {advancementMessage && isCorrect && (
+            <p className="advancement-message">{advancementMessage}</p>
+          )}
         </div>
       )}
 
@@ -166,23 +192,47 @@ const GameScreen = ({ onGameComplete }) => {
 
   // If all words are at 100%, game is complete
   useEffect(() => {
-    if (overallProgress >= 100 && onGameComplete) {
-      onGameComplete();
+    const allWordsComplete = words.every(word => word.completed);
+    if (allWordsComplete && onGameComplete) {
+      // Give a short delay for celebration before moving to the end screen
+      setTimeout(() => {
+        onGameComplete();
+      }, 3000);
     }
-  }, [overallProgress, onGameComplete]);
+  }, [words, onGameComplete]);
 
-  const handleChallengeComplete = (wordName, pointsEarned) => {
+  // Function to advance difficulty based on current difficulty
+  const getNextDifficulty = (currentDifficulty) => {
+    switch (currentDifficulty) {
+      case 'easy':
+        return 'medium';
+      case 'medium':
+        return 'hard';
+      case 'hard':
+      default:
+        return 'hard'; // Already at maximum difficulty
+    }
+  };
+
+  const handleChallengeComplete = (wordName, pointsEarned, isCorrect) => {
     setWords(prevWords => {
       return prevWords.map(word => {
-        if (word.word === wordName && pointsEarned > 0) {
-          // Calculate how much to increase the power level based on which challenge was completed
-          const pointIncrease = pointsEarned === 3 ? 34 : 33; // Hard challenge gives slightly more
-          const newPowerLevel = Math.min(100, word.power_level + pointIncrease);
-          const newCorrectUses = word.correct_uses + (pointsEarned > 0 ? 1 : 0);
+        if (word.word === wordName && isCorrect) {
+          // Calculate new power level based on challenge difficulty
+          const difficultyBoost = word.current_difficulty === 'hard' ? 34 : 33;
+          const newPowerLevel = Math.min(100, word.power_level + difficultyBoost);
+          const newCorrectUses = word.correct_uses + 1;
+
+          // Determine if we should advance to the next difficulty
+          const nextDifficulty = getNextDifficulty(word.current_difficulty);
+          const isWordComplete = nextDifficulty === 'hard' && word.current_difficulty === 'hard';
+
           return {
             ...word,
             power_level: newPowerLevel,
-            correct_uses: newCorrectUses
+            correct_uses: newCorrectUses,
+            current_difficulty: nextDifficulty,
+            completed: isWordComplete || newPowerLevel >= 100
           };
         }
         return word;
@@ -217,16 +267,32 @@ const GameScreen = ({ onGameComplete }) => {
           <>
             <h2 className="word-selection-title">Choose a Word to Grow</h2>
 
+            <div className="progress-summary">
+              <p>{Math.round(overallProgress)}% Complete - {words.filter(word => word.completed).length} of {words.length} Words Mastered</p>
+            </div>
+
             <div className="word-runes-container">
               {words.map((word) => (
                 <WordRune
                   key={word.word}
                   word={word}
-                  onClick={() => setSelectedWord(word)}
+                  onClick={() => !word.completed && setSelectedWord(word)}
                   isSelected={false}
                 />
               ))}
             </div>
+
+            {words.filter(word => word.completed).length > 0 && words.filter(word => !word.completed).length > 0 && (
+              <div className="word-selection-hint">
+                <p>Click on an incomplete word to continue your progress</p>
+              </div>
+            )}
+
+            {words.filter(word => !word.completed).length === 0 && (
+              <div className="completion-message">
+                <p>Congratulations! You've mastered all the words!</p>
+              </div>
+            )}
           </>
         ) : (
           <ChallengeScreen
