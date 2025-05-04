@@ -67,7 +67,9 @@
       ],
       "power_level": 0,
       "correct_uses": 0,
-      "color": "#FF0000"
+      "color": "#FF0000",
+      "current_difficulty": "easy",
+      "completed": false
     },
     {
       "word": "Observe",
@@ -115,7 +117,9 @@
       ],
       "power_level": 0,
       "correct_uses": 0,
-      "color": "#FF7F00"
+      "color": "#FF7F00",
+      "current_difficulty": "easy",
+      "completed": false
     },
     {
       "word": "Compare",
@@ -163,7 +167,9 @@
       ],
       "power_level": 0,
       "correct_uses": 0,
-      "color": "#FFFF00"
+      "color": "#FFFF00",
+      "current_difficulty": "easy",
+      "completed": false
     },
     {
       "word": "Explain",
@@ -211,7 +217,9 @@
       ],
       "power_level": 0,
       "correct_uses": 0,
-      "color": "#00FF00"
+      "color": "#00FF00",
+      "current_difficulty": "easy",
+      "completed": false
     },
     {
       "word": "Support",
@@ -259,7 +267,9 @@
       ],
       "power_level": 0,
       "correct_uses": 0,
-      "color": "#0000FF"
+      "color": "#0000FF",
+      "current_difficulty": "easy",
+      "completed": false
     }
   ]
 }
