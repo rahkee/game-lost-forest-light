@@ -1,54 +1,108 @@
-# React + TypeScript + Vite
+# The Tale of the Lost Forest Light
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A vocabulary-focused educational game designed for 8-9 year olds. Players restore a magical forest by answering vocabulary questions about five academic words: Predict, Observe, Compare, Explain, and Support.
 
-Currently, two official plugins are available:
+![Game Screenshot](./screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Game Overview
 
-## Expanding the ESLint configuration
+In this game, players:
+- Start in a dark forest that gradually brightens as they progress
+- Select from five word runes (each representing an academic vocabulary word)
+- Answer increasingly difficult challenges for each word
+- Restore the forest's light by mastering all five vocabulary words
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+- Three challenge levels per word (easy, medium, hard)
+- Points system (1 point for easy/medium, 3 points for hard)
+- Visual feedback with glowing runes and brightening forest
+- Responsive design that works on different screen sizes
+- Educational content that reinforces academic vocabulary
+
+## Tech Stack
+
+- React
+- TypeScript
+- CSS (with some Tailwind CSS classes)
+- Vite build system
+
+## Running the Game
+
+1. Clone the repository
+2. Install dependencies:
+```bash
+npm install
+```
+3. Start the development server:
+```bash
+npm run dev
+```
+4. Open your browser to the URL displayed in the terminal (usually http://localhost:5173)
+
+## Game Structure
+
+The game consists of three main screens:
+
+1. **StartScreen**: Introduction screen with game title and play button
+2. **GameScreen**: Main game area with word runes and challenges
+3. **EndScreen**: Completion screen with restored forest
+
+The game's content is defined in `src/data.json`, which includes:
+- Word definitions
+- Challenge questions and answers
+- Game state tracking
+- Asset references
+
+## Extending the Game
+
+### Adding New Vocabulary Words
+
+To add new vocabulary words, edit the `data.json` file:
+
+1. Add a new word object to the `words` array
+2. Include the word, definition, and color
+3. Create three challenges (easy, medium, hard) with choices, feedback, and points
+
+Example:
+```json
+{
+  "word": "Analyze",
+  "definition": "To study something carefully to understand its parts.",
+  "challenges": [
+    {
+      "difficulty": "easy",
+      "prompt": "Which sentence uses 'analyze' correctly?",
+      "choices": [
+        "I analyze my shoe to make it bigger.",
+        "Let's analyze the story to find the main idea.",
+        "I analyze my breakfast every morning.",
+        "The dog will analyze the mail."
+      ],
+      "points": 1,
+      "feedback": "Great! 'Analyze' means to study something carefully.",
+      "feedback_negative": "Remember, 'analyze' means to study something to understand its parts."
     },
-  },
-})
+    // Add medium and hard challenges...
+  ],
+  "power_level": 0,
+  "correct_uses": 0,
+  "color": "#800080" // Purple
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Adding Custom Assets
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Store custom assets in:
+- `src/assets/images/` for images
+- `src/assets/audio/` for sound effects
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Then update the paths in `data.json` to reference these files.
+
+## License
+
+MIT
+
+## Credits
+
+Created for educational purposes.

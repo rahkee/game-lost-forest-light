@@ -1,34 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
+import gameData from './data.json'
+import StartScreen from './components/StartScreen'
+import GameScreen from './components/GameScreen'
+import EndScreen from './components/EndScreen'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [gameState, setGameState] = useState<string>(gameData.state.currentScreen)
+  const [gameProgress, setGameProgress] = useState<any>(gameData.state.gameProgress || {})
+
+  // Function to switch to the game screen
+  const handleStartGame = () => {
+    setGameState('GameScreen')
+  }
+
+  // Function to switch to the end screen when game is complete
+  const handleGameComplete = () => {
+    setGameState('EndScreen')
+  }
+
+  // Function to restart the game
+  const handlePlayAgain = () => {
+    // Reset game progress
+    setGameProgress({})
+    setGameState('StartScreen')
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="flex flex-col min-h-screen">
+      {gameState === 'StartScreen' && (
+        <StartScreen onStartGame={handleStartGame} />
+      )}
+
+      {gameState === 'GameScreen' && (
+        <GameScreen onGameComplete={handleGameComplete} />
+      )}
+
+      {gameState === 'EndScreen' && (
+        <EndScreen onPlayAgain={handlePlayAgain} />
+      )}
+    </div>
   )
 }
 

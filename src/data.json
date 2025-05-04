@@ -3,17 +3,17 @@
   "description": "A vocabulary game where you grow word power to restore a magical forest.",
   "assets": {
     "images": {
-      "forest_background_start": "/assets/images/forest_dark.png",
-      "forest_background_progress": "/assets/images/forest_dim.png",
-      "forest_background_end": "/assets/images/forest_bright.png",
-      "companion_fox": "/assets/images/fox_companion.png",
-      "rune_base": "/assets/images/rune_base.png"
+      "forest_background_start": "./assets/images/forest_dark.png",
+      "forest_background_progress": "./assets/images/forest_dim.png",
+      "forest_background_end": "./assets/images/forest_bright.png",
+      "companion_fox": "./assets/images/fox_companion.png",
+      "rune_base": "./assets/images/rune_base.png"
     },
     "audio": {
-      "background_music": "/assets/audio/forest_ambience.mp3",
-      "correct_answer": "/assets/audio/correct.wav",
-      "incorrect_answer": "/assets/audio/incorrect.wav",
-      "rune_power_up": "/assets/audio/power_up.wav"
+      "background_music": "./assets/audio/forest_ambience.mp3",
+      "correct_answer": "./assets/audio/correct.wav",
+      "incorrect_answer": "./assets/audio/incorrect.wav",
+      "rune_power_up": "./assets/audio/power_up.wav"
     }
   },
   "state": {
