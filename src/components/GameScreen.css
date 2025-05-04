@@ -365,28 +365,6 @@
   justify-content: center;
 }
 
-.difficulty-badge {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: 9999px;
-  margin-top: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.difficulty-indicator {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.difficulty-indicator .difficulty-badge {
-  font-size: 0.875rem;
-  padding: 0.25rem 0.75rem;
-}
-
 .advancement-message {
   margin-top: 1rem;
   font-weight: 600;
