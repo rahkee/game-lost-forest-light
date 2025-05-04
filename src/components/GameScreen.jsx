@@ -18,10 +18,10 @@ const WordRune = ({ word, onClick, isSelected }) => {
       onClick={onClick}
     >
       <div className="rune-circle">
-        <span className="rune-initial">{word.word[0]}</span>
+        <span className="rune-word-inside">{word.word}</span>
         {isComplete && <span className="completion-mark">✓</span>}
       </div>
-      <h3 className="rune-word">{word.word}</h3>
+      <h3 className="power-percentage">{Math.round(power_level)}%</h3>
       <div className={`difficulty-badge ${colorClass}`}>
         {!isComplete ? difficultyBadge : 'Mastered'}
       </div>
@@ -112,7 +112,7 @@ const ChallengeScreen = ({ word, onComplete }) => {
   return (
     <div className="challenge-container">
       <div className={`challenge-rune ${colorClass}`}>
-        <span className="rune-initial">{word.word[0]}</span>
+        <span className="rune-word-inside">{word.word}</span>
       </div>
 
       <h2 className="challenge-word">{word.word}</h2>
