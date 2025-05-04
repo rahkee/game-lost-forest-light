@@ -47,7 +47,7 @@ const EndScreen = ({ onPlayAgain }) => {
           <div
             className="companion-avatar"
             style={{
-              backgroundImage: `url(${gameData.assets.images.companion_fox})`,
+              backgroundImage: `url(${gameData.assets.images.fox.cheering})`,
               backgroundColor: 'rgba(255, 150, 60, 0.8)'
             }}
           />

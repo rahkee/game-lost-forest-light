@@ -6,8 +6,13 @@
       "forest_background_start": "./assets/images/forest_dark.png",
       "forest_background_progress": "./assets/images/forest_dim.png",
       "forest_background_end": "./assets/images/forest_bright.png",
-      "companion_fox": "./assets/images/fox_companion.png",
-      "rune_base": "./assets/images/rune_base.png"
+      "rune_base": "./assets/images/rune_base.png",
+      "fox": {
+        "default": "./assets/images/fox_companion.png",
+        "happy": "./assets/images/fox_happy.png",
+        "sad": "./assets/images/fox_sad.png",
+        "cheering": "./assets/images/fox_cheering.png"
+      }
     },
     "audio": {
       "background_music": "./assets/audio/forest_ambience.mp3",

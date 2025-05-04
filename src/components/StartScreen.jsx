@@ -39,7 +39,7 @@ const StartScreen = ({ onStartGame }) => {
         <div
           className="companion-fox"
           style={{
-            backgroundImage: `url(${gameData.assets.images.companion_fox})`
+            backgroundImage: `url(${gameData.assets.images.fox.default})`
           }}
         />
       </div>
