@@ -21,6 +21,7 @@
 
 .game-header {
   display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 1rem 1.5rem;
   z-index: 10;
@@ -32,12 +33,39 @@
   font-weight: bold;
   text-align: center;
   flex: 1;
+  margin-bottom: 0.75rem;
 }
 
 @media (min-width: 640px) {
   .game-title {
     font-size: 1.875rem;
   }
+}
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.progress-text {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.progress-bar-container {
+  width: 100%;
+  max-width: 32rem;
+  background-color: #374151;
+  border-radius: 9999px;
+  height: 0.5rem;
+}
+
+.progress-bar {
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: #fbbf24;
 }
 
 .game-main {
@@ -49,6 +77,15 @@
   width: 100%;
   padding: 1rem;
   z-index: 10;
+}
+
+.content-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
 }
 
 .word-selection-title {
@@ -64,6 +101,8 @@
   justify-content: center;
   gap: 1rem;
   max-width: 48rem;
+  width: 100%;
+  padding: 1rem 0.5rem;
 }
 
 .word-rune {
@@ -298,32 +337,9 @@
   width: 100%;
   padding: 1rem;
   z-index: 10;
-  color: white;
-}
-
-.progress-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-}
-
-.progress-text {
-  margin-bottom: 0.5rem;
-}
-
-.progress-bar-container {
-  width: 100%;
-  max-width: 32rem;
-  background-color: #374151;
-  border-radius: 9999px;
-  height: 0.5rem;
-}
-
-.progress-bar {
-  height: 0.5rem;
-  border-radius: 9999px;
-  background-color: #fbbf24;
+  background-color: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .difficulty-badge {

@@ -258,52 +258,11 @@ const GameScreen = ({ onGameComplete }) => {
         }}
       />
 
-      {/* Header */}
+      {/* Header with title and progress bar */}
       <header className="game-header">
         <h1 className="game-title">
           {gameData.title}
         </h1>
-      </header>
-
-      {/* Main content */}
-      <main className="game-main">
-        {!selectedWord ? (
-          <>
-            <h2 className="word-selection-title">Choose a Word to Grow</h2>
-
-            <div className="word-runes-container">
-              {words.map((word) => (
-                <WordRune
-                  key={word.word}
-                  word={word}
-                  onClick={() => !word.completed && setSelectedWord(word)}
-                  isSelected={false}
-                />
-              ))}
-            </div>
-
-            {words.filter(word => word.completed).length > 0 && words.filter(word => !word.completed).length > 0 && (
-              <div className="word-selection-hint">
-                <p>Click on an incomplete word to continue your progress</p>
-              </div>
-            )}
-
-            {words.filter(word => !word.completed).length === 0 && (
-              <div className="completion-message">
-                <p>Congratulations! You've mastered all the words!</p>
-              </div>
-            )}
-          </>
-        ) : (
-          <ChallengeScreen
-            word={selectedWord}
-            onComplete={handleChallengeComplete}
-          />
-        )}
-      </main>
-
-      {/* Footer with progress */}
-      <footer className="game-footer">
         <div className="progress-container">
           <p className="progress-text">Forest Light: {Math.round(overallProgress)}%</p>
           <div className="progress-bar-container">
@@ -313,6 +272,50 @@ const GameScreen = ({ onGameComplete }) => {
             />
           </div>
         </div>
+      </header>
+
+      {/* Main content */}
+      <main className="game-main">
+        {!selectedWord ? (
+          <>
+            <div className="content-area">
+              <h2 className="word-selection-title">Choose a Word to Grow</h2>
+
+              {words.filter(word => word.completed).length > 0 && words.filter(word => !word.completed).length > 0 && (
+                <div className="word-selection-hint">
+                  <p>Click on an incomplete word to continue your progress</p>
+                </div>
+              )}
+
+              {words.filter(word => !word.completed).length === 0 && (
+                <div className="completion-message">
+                  <p>Congratulations! You've mastered all the words!</p>
+                </div>
+              )}
+            </div>
+          </>
+        ) : (
+          <ChallengeScreen
+            word={selectedWord}
+            onComplete={handleChallengeComplete}
+          />
+        )}
+      </main>
+
+      {/* Footer with word runes for easy thumb access */}
+      <footer className="game-footer">
+        {!selectedWord && (
+          <div className="word-runes-container">
+            {words.map((word) => (
+              <WordRune
+                key={word.word}
+                word={word}
+                onClick={() => !word.completed && setSelectedWord(word)}
+                isSelected={false}
+              />
+            ))}
+          </div>
+        )}
       </footer>
     </div>
   );
