@@ -24,7 +24,7 @@ In this game, players:
 
 - React
 - TypeScript
-- CSS (with some Tailwind CSS classes)
+- CSS 
 - Vite build system
 
 ## Running the Game

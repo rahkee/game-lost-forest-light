@@ -3,8 +3,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
   background-color: #1e293b;
   position: relative;
   overflow: hidden;
@@ -33,7 +33,6 @@
 .game-title {
   font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 2rem;
   text-align: center;
   color: white;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -54,7 +53,7 @@
 .game-description {
   font-size: 1.125rem;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-top: 2rem;
 }
 
 @media (min-width: 640px) {
@@ -64,6 +63,7 @@
 }
 
 .play-button {
+  margin-top: 3rem;
   padding: 1rem 2rem;
   border-radius: 9999px;
   font-size: 1.25rem;

@@ -1,35 +1,33 @@
 import { useState, useEffect } from 'react';
 import gameData from '../data.json';
+import './GameScreen.css';
 
-// Placeholder component for word runes
+// Word rune component
 const WordRune = ({ word, onClick, isSelected }) => {
   const { color, power_level } = word;
 
   return (
     <div
-      className={`flex flex-col items-center justify-center p-4 rounded-lg cursor-pointer transition-all duration-300 ${isSelected ? 'transform scale-110 shadow-lg' : ''
-        }`}
+      className={`word-rune ${isSelected ? 'selected' : ''}`}
       style={{
         backgroundColor: `${color}33`, // Add transparency to the color
-        borderColor: color,
-        borderWidth: '2px',
-        borderStyle: 'solid'
+        borderColor: color
       }}
       onClick={onClick}
     >
       <div
-        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-2"
+        className="rune-circle"
         style={{
           background: `${color}99`, // Slightly more opaque than the container
           boxShadow: `0 0 ${5 + power_level * 2}px ${power_level * 3}px ${color}`
         }}
       >
-        <span className="text-xl font-bold text-white drop-shadow-md">{word.word[0]}</span>
+        <span className="rune-initial">{word.word[0]}</span>
       </div>
-      <h3 className="text-lg font-semibold">{word.word}</h3>
-      <div className="w-full bg-gray-300 rounded-full h-2 mt-2">
+      <h3 className="rune-word">{word.word}</h3>
+      <div className="power-bar-container">
         <div
-          className="h-2 rounded-full"
+          className="power-bar"
           style={{
             width: `${power_level}%`,
             backgroundColor: color
@@ -40,7 +38,7 @@ const WordRune = ({ word, onClick, isSelected }) => {
   );
 };
 
-// Fully implemented challenge screen
+// Challenge screen component
 const ChallengeScreen = ({ word, onComplete, onBack }) => {
   const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -82,32 +80,32 @@ const ChallengeScreen = ({ word, onComplete, onBack }) => {
   };
 
   return (
-    <div className="flex flex-col items-center p-6 bg-white/10 backdrop-blur-sm rounded-lg w-full max-w-lg">
+    <div className="challenge-container">
       <div
-        className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
+        className="challenge-rune"
         style={{
           backgroundColor: word.color,
           boxShadow: `0 0 10px 2px ${word.color}`
         }}
       >
-        <span className="text-2xl font-bold text-white">{word.word[0]}</span>
+        <span className="rune-initial">{word.word[0]}</span>
       </div>
 
-      <h2 className="text-2xl font-bold mb-2 text-white">{word.word}</h2>
-      <p className="mb-6 text-center text-white/90">{word.definition}</p>
+      <h2 className="challenge-word">{word.word}</h2>
+      <p className="challenge-definition">{word.definition}</p>
 
-      <div className="bg-white/20 p-4 rounded-lg mb-6 w-full">
-        <h3 className="text-xl font-semibold mb-4 text-white">{currentChallenge.prompt}</h3>
+      <div className="challenge-question-container">
+        <h3 className="challenge-prompt">{currentChallenge.prompt}</h3>
 
-        <div className="flex flex-col gap-2 w-full">
+        <div className="challenge-choices">
           {currentChallenge.choices.map((choice, index) => (
             <button
               key={index}
-              className={`flex p-3 rounded-lg text-left transition-all ${selectedAnswer === index
-                ? isCorrect
-                  ? 'bg-green-600 text-white'
-                  : 'bg-red-600 text-white'
-                : 'bg-white/10 hover:bg-white/20 text-white'
+              className={`challenge-choice ${selectedAnswer === index
+                  ? isCorrect
+                    ? 'correct'
+                    : 'incorrect'
+                  : ''
                 }`}
               onClick={() => selectedAnswer === null && handleAnswerSelect(index)}
               disabled={selectedAnswer !== null}
@@ -119,15 +117,15 @@ const ChallengeScreen = ({ word, onComplete, onBack }) => {
       </div>
 
       {feedback && (
-        <div className={`p-4 rounded-lg mb-6 w-full ${isCorrect ? 'bg-green-600/20' : 'bg-red-600/20'}`}>
-          <p className="text-white">{feedback}</p>
+        <div className={`feedback-container ${isCorrect ? 'correct' : 'incorrect'}`}>
+          <p className="feedback-text">{feedback}</p>
         </div>
       )}
 
-      <div className="flex gap-4">
+      <div className="challenge-buttons">
         {selectedAnswer !== null && (
           <button
-            className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg"
+            className="next-button"
             onClick={handleNextChallenge}
           >
             {currentChallengeIndex < word.challenges.length - 1 ? 'Next Challenge' : 'Complete'}
@@ -135,7 +133,7 @@ const ChallengeScreen = ({ word, onComplete, onBack }) => {
         )}
 
         <button
-          className="text-white underline px-6 py-2"
+          className="back-button"
           onClick={onBack}
         >
           Back to Words
@@ -187,32 +185,30 @@ const GameScreen = ({ onGameComplete }) => {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen w-full bg-slate-900 relative overflow-hidden">
+    <div className="game-screen">
       {/* Forest background with brightness based on progress */}
       <div
-        className="absolute inset-0 bg-cover bg-center z-0 transition-opacity duration-1000"
+        className="forest-background"
         style={{
           backgroundImage: `url(${gameData.assets.images.forest_background_progress})`,
-          // Fallback until we have actual assets
-          backgroundColor: '#0a1929',
           filter: `brightness(${20 + forestBrightness * 0.8}%)`
         }}
       />
 
       {/* Header */}
-      <header className="flex w-full px-6 py-4 z-10 text-white">
-        <h1 className="text-2xl sm:text-3xl font-bold text-center flex-1">
+      <header className="game-header">
+        <h1 className="game-title">
           {gameData.title}
         </h1>
       </header>
 
       {/* Main content */}
-      <main className="flex flex-1 flex-col items-center justify-center w-full p-4 z-10">
+      <main className="game-main">
         {!selectedWord ? (
           <>
-            <h2 className="text-2xl font-bold text-white mb-6">Choose a Word to Grow</h2>
+            <h2 className="word-selection-title">Choose a Word to Grow</h2>
 
-            <div className="flex flex-wrap justify-center gap-4 max-w-3xl">
+            <div className="word-runes-container">
               {words.map((word) => (
                 <WordRune
                   key={word.word}
@@ -233,12 +229,12 @@ const GameScreen = ({ onGameComplete }) => {
       </main>
 
       {/* Footer with progress */}
-      <footer className="flex w-full p-4 z-10 text-white">
-        <div className="flex flex-col items-center flex-1">
-          <p className="mb-2">Forest Light: {Math.round(overallProgress)}%</p>
-          <div className="w-full max-w-lg bg-gray-700 rounded-full h-2">
+      <footer className="game-footer">
+        <div className="progress-container">
+          <p className="progress-text">Forest Light: {Math.round(overallProgress)}%</p>
+          <div className="progress-bar-container">
             <div
-              className="h-2 rounded-full bg-amber-400"
+              className="progress-bar"
               style={{ width: `${overallProgress}%` }}
             />
           </div>
