@@ -4,39 +4,32 @@ import './GameScreen.css';
 
 // Word rune component
 const WordRune = ({ word, onClick, isSelected }) => {
-  const { color, power_level } = word;
+  const { power_level } = word;
   const isComplete = word.completed;
   const difficultyBadge = word.current_difficulty.charAt(0).toUpperCase() + word.current_difficulty.slice(1);
 
+  // Convert color names to CSS classes
+  const colorClass = `color-${word.word.toLowerCase()}`;
+  const powerClass = `power-${Math.floor(power_level / 25)}`;
+
   return (
     <div
-      className={`word-rune ${isSelected ? 'selected' : ''} ${isComplete ? 'completed' : ''}`}
-      style={{
-        backgroundColor: `${color}33`, // Add transparency to the color
-        borderColor: color
-      }}
+      className={`word-rune ${colorClass} ${powerClass} ${isSelected ? 'selected' : ''} ${isComplete ? 'completed' : ''}`}
       onClick={onClick}
     >
-      <div
-        className="rune-circle"
-        style={{
-          background: `${color}99`, // Slightly more opaque than the container
-          boxShadow: `0 0 ${5 + power_level * 2}px ${power_level * 3}px ${color}`
-        }}
-      >
+      <div className="rune-circle">
         <span className="rune-initial">{word.word[0]}</span>
         {isComplete && <span className="completion-mark">✓</span>}
       </div>
       <h3 className="rune-word">{word.word}</h3>
-      <div className="difficulty-badge" style={{ backgroundColor: color }}>
+      <div className={`difficulty-badge ${colorClass}`}>
         {!isComplete ? difficultyBadge : 'Mastered'}
       </div>
       <div className="power-bar-container">
         <div
-          className="power-bar"
+          className={`power-bar ${colorClass}`}
           style={{
-            width: `${power_level}%`,
-            backgroundColor: color
+            width: `${power_level}%`
           }}
         />
       </div>
@@ -53,6 +46,9 @@ const ChallengeScreen = ({ word, onComplete }) => {
   const [showContinue, setShowContinue] = useState(false);
   const [feedbackVisible, setFeedbackVisible] = useState(false);
   const [advancementMessage, setAdvancementMessage] = useState('');
+
+  // Get color class
+  const colorClass = `color-${word.word.toLowerCase()}`;
 
   // Find the challenge that matches the current difficulty level
   const currentChallenge = word.challenges.find(challenge =>
@@ -115,13 +111,7 @@ const ChallengeScreen = ({ word, onComplete }) => {
 
   return (
     <div className="challenge-container">
-      <div
-        className="challenge-rune"
-        style={{
-          backgroundColor: word.color,
-          boxShadow: `0 0 10px 2px ${word.color}`
-        }}
-      >
+      <div className={`challenge-rune ${colorClass}`}>
         <span className="rune-initial">{word.word[0]}</span>
       </div>
 
@@ -129,7 +119,7 @@ const ChallengeScreen = ({ word, onComplete }) => {
       <p className="challenge-definition">{word.definition}</p>
 
       <div className="difficulty-indicator">
-        <span className="difficulty-badge" style={{ backgroundColor: word.color }}>
+        <span className={`difficulty-badge ${colorClass}`}>
           {currentChallenge.difficulty.charAt(0).toUpperCase() + currentChallenge.difficulty.slice(1)}
         </span>
       </div>
