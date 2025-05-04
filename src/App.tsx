@@ -5,6 +5,9 @@ import StartScreen from './components/StartScreen'
 import GameScreen from './components/GameScreen'
 import EndScreen from './components/EndScreen'
 
+// Set this to false before production
+const DEBUG_MODE = true;
+
 function App() {
   const [gameState, setGameState] = useState<string>(gameData.state.currentScreen)
   const [gameProgress, setGameProgress] = useState<any>(gameData.state.gameProgress || {})
@@ -38,6 +41,15 @@ function App() {
 
       {gameState === 'EndScreen' && (
         <EndScreen onPlayAgain={handlePlayAgain} />
+      )}
+
+      {/* Developer debug controls - remove before production */}
+      {DEBUG_MODE && (
+        <div className="debug-controls">
+          <button onClick={() => setGameState('StartScreen')}>Debug: Start Screen</button>
+          <button onClick={() => setGameState('GameScreen')}>Debug: Game Screen</button>
+          <button onClick={() => setGameState('EndScreen')}>Debug: End Screen</button>
+        </div>
       )}
     </div>
   )
