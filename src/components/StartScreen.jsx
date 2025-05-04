@@ -1,10 +1,8 @@
-import { useState } from 'react';
+import React from 'react';
 import gameData from '../data.json';
 import './StartScreen.css';
 
 const StartScreen = ({ onStartGame }) => {
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
-
   return (
     <div className="start-screen">
       {/* Dark forest background */}
@@ -31,13 +29,6 @@ const StartScreen = ({ onStartGame }) => {
         <button
           className="play-button"
           onClick={onStartGame}
-          onMouseEnter={() => setIsButtonHovered(true)}
-          onMouseLeave={() => setIsButtonHovered(false)}
-          style={{
-            backgroundColor: isButtonHovered ? '#22c55e' : '#16a34a',
-            boxShadow: isButtonHovered ? '0 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
-            transform: isButtonHovered ? 'scale(1.05)' : 'scale(1)'
-          }}
         >
           Play
         </button>
